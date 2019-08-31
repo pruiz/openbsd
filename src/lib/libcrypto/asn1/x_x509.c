@@ -245,6 +245,39 @@ const ASN1_ITEM X509_it = {
 	.sname = "X509",
 };
 
+static const ASN1_TEMPLATE X509_CERTCHOICES_ch_tt[] = {
+	{
+		.flags = 0,
+		.tag = 0,
+		.offset = offsetof(X509_CERTCHOICES, d.certificate),
+		.field_name = "d.certificate",
+		.item = &X509_it,
+	},
+	{
+		.flags = ASN1_TFLG_IMPLICIT,
+		.tag = 0,
+		.offset = offsetof(X509_CERTCHOICES, d.extendedCertificate),
+		.field_name = "d.extendedCertificate",
+		.item = &ASN1_SEQUENCE_it,
+	},
+	{
+		.flags = ASN1_TFLG_IMPLICIT,
+		.tag = 1,
+		.offset = offsetof(X509_CERTCHOICES, d.v1AttrCert),
+		.field_name = "d.v1AttrCert",
+		.item = &ASN1_SEQUENCE_it,
+	},
+};
+
+const ASN1_ITEM X509_CERTCHOICES_it = {
+	.itype = ASN1_ITYPE_CHOICE,
+	.utype = offsetof(X509_CERTCHOICES, type),
+	.templates = X509_CERTCHOICES_ch_tt,
+	.tcount = sizeof(X509_CERTCHOICES_ch_tt) / sizeof(ASN1_TEMPLATE),
+	.funcs = NULL,
+	.size = sizeof(X509_CERTCHOICES),
+	.sname = "X509_CERTCHOICES",
+};
 
 X509 *
 d2i_X509(X509 **a, const unsigned char **in, long len)

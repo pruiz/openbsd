@@ -295,6 +295,17 @@ struct x509_st
 
 DECLARE_STACK_OF(X509)
 
+struct x509_certchoices_st {
+	int type;
+	union {
+		X509 *certificate;
+		ASN1_STRING *extendedCertificate; /* Obsolete */
+		ASN1_STRING *v1AttrCert; /* Left encoded for now */
+	} d;
+};
+
+DECLARE_STACK_OF(X509_CERTCHOICES)
+
 /* This is used for a table of trust checking functions */
 
 typedef struct x509_trust_st {
@@ -871,6 +882,7 @@ void X509_free(X509 *a);
 X509 *d2i_X509(X509 **a, const unsigned char **in, long len);
 int i2d_X509(X509 *a, unsigned char **out);
 extern const ASN1_ITEM X509_it;
+extern const ASN1_ITEM X509_CERTCHOICES_it;
 X509_CERT_AUX *X509_CERT_AUX_new(void);
 void X509_CERT_AUX_free(X509_CERT_AUX *a);
 X509_CERT_AUX *d2i_X509_CERT_AUX(X509_CERT_AUX **a, const unsigned char **in, long len);

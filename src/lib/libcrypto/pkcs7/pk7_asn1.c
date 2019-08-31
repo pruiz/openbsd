@@ -280,7 +280,7 @@ static const ASN1_TEMPLATE PKCS7_SIGNED_seq_tt[] = {
 		.tag = 0,
 		.offset = offsetof(PKCS7_SIGNED, cert),
 		.field_name = "cert",
-		.item = &X509_it,
+		.item = &X509_CERTCHOICES_it,
 	},
 	{
 		.flags = ASN1_TFLG_IMPLICIT | ASN1_TFLG_SET_OF | ASN1_TFLG_OPTIONAL,

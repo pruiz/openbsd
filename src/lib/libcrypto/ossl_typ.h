@@ -126,6 +126,7 @@ typedef struct X509_name_st X509_NAME;
 typedef struct X509_pubkey_st X509_PUBKEY;
 typedef struct x509_store_st X509_STORE;
 typedef struct x509_store_ctx_st X509_STORE_CTX;
+typedef struct x509_certchoices_st X509_CERTCHOICES;
 
 typedef struct pkcs8_priv_key_info_st PKCS8_PRIV_KEY_INFO;
 
